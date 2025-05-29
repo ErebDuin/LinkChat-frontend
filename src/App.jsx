@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Participants from './components/Participants'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,7 +29,20 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+    {/* Chat Application Structure */}
+      <div className="chat-app">
+      <h1 className="app-title">LinkChat</h1>
+      <div className="chat-container">
+        <Participants />
+        {/* The rest of your chat content will go here */}
+        <div className="chat-placeholder">
+          Chat content will be implemented later
+        </div>
+      </div>
+    </div>
     </>
+    
   )
 }
 
