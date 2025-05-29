@@ -6,10 +6,11 @@ function App() {
 
   return (
     <Routes>
-      {/* Temp root */}
-      <Route path='/' element={<Chat />}/>
+      
       {/* Chat page */}
       <Route path="/chat" element={<Chat />}/>
+      {/* Temp root */}
+      <Route path='/' element={<Chat />}/>
     </Routes>
     
   )
