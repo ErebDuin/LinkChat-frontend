@@ -1,8 +1,7 @@
 .container {
   position: relative;
-  width: 100%;
-  min-width: 600px;
   height: 90vh;
+  width:60vw;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -46,12 +45,11 @@
 }
 
 .leftContentMobile {
-  width: 100%;
   border-right: none;
 }
 
 .rightContent {
-  width: 70%;
+  width:100%;
   position: relative;
   background: white;
   border-top: 1px solid black;
@@ -79,8 +77,8 @@
 }
 
 .bottomRightContent {
-  flex: 2;
-  padding: 10px;
+  padding: 0px;
   box-sizing: border-box;
   overflow: hidden;
+  width:auto;
 }

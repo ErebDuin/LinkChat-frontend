@@ -30,28 +30,24 @@ const Layout = ({ leftContent, topRightContent, bottomRightContent }) => {
         )}
       </div>
       <div className={styles.body}>
+        {/* Show leftContent only on desktop */}
+        {!isMobile && (
+          <div className={styles.leftContent}>
+            {leftContent}
+          </div>
+        )}
+
+        {/* Show rightContent always */}
         <div
           className={
             isMobile
-              ? `${styles.leftContent} ${styles.leftContentMobile}`
-              : styles.leftContent
+              ? `${styles.rightContent} ${styles.rightContentMobile}`
+              : styles.rightContent
           }
         >
-          {leftContent}
+          <div className={styles.topRightContent}>{topRightContent}</div>
+          <div className={styles.bottomRightContent}>{bottomRightContent}</div>
         </div>
-
-        {(menuOpen || !isMobile) && (
-          <div
-            className={
-              isMobile
-                ? `${styles.rightContent} ${styles.rightContentMobile}`
-                : styles.rightContent
-            }
-          >
-            <div className={styles.topRightContent}>{topRightContent}</div>
-            <div className={styles.bottomRightContent}>{bottomRightContent}</div>
-          </div>
-        )}
       </div>
     </div>
   );
