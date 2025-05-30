@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Participants.css';
+import styles from './Participants.module.css';
 
 const Participants = () => {
   const [participants, setParticipants] = useState([
@@ -14,15 +14,12 @@ const Participants = () => {
   };
 
   return (
-    <div className="participants-container">
-      <div className="participants-header">
-        <h3>Chat Title/Name</h3>
-      </div>
-      <div className="participants-list">
+    <div className={styles.participantsContainer}>
+      <div className={styles.participantsList}>
         {participants.map(participant => (
           <div 
             key={participant.id}
-            className={`participant ${participant.isActive ? 'active' : ''}`}
+            className={`${styles.participant} ${participant.isActive ? styles.active : ''}`}
             onClick={() => handleParticipantClick(participant.id)}
           >
             {participant.name}
