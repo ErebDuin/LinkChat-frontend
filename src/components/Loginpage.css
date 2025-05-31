@@ -1,0 +1,89 @@
+.login-container {
+  max-width: 380px;
+  margin: 80px auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-row label {
+  min-width: 60px;
+  color: #333;
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.form-row select {
+  flex: 1;
+}
+
+.login-container label:not(.form-row label) {
+  color: #333;
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.login-container input,
+.login-container select {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background: #f9f9fb;
+  transition: border 0.2s, background 0.2s;
+}
+
+.login-container input:focus,
+.login-container select:focus {
+  border: 1.5px solid #0078ff;
+  outline: none;
+  background: #fff;
+}
+.login-container select,
+.login-container option {
+  color: #111 !important;
+  background: #fff;
+}
+.login-container button {
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(90deg, #0078ff 60%, #005fcc 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,120,255,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.login-container button:hover {
+  background: linear-gradient(90deg, #005fcc 60%, #0078ff 100%);
+  box-shadow: 0 4px 16px rgba(0,120,255,0.13);
+}
