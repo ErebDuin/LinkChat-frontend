@@ -1,0 +1,84 @@
+.container {
+  position: relative;
+  height: 90vh;
+  width:60vw;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.header {
+  height: 60px;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.headerTitle {
+  margin: 0;
+}
+
+.menuButton {
+  font-size: 24px;
+  padding: 4px 12px;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.leftContent {
+  width: 30%;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.leftContentMobile {
+  border-right: none;
+}
+
+.rightContent {
+  width:100%;
+  position: relative;
+  background: white;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rightContentMobile {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  height: calc(100vh - 60px);
+  border-left: 1px solid black;
+  z-index: 10;
+}
+
+.topRightContent {
+  flex: 8;
+  overflow-y: auto;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.bottomRightContent {
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: hidden;
+  width:auto;
+}

@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+.chat-app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chat-container {
+  display: flex;
+  flex: 1;
+  height: calc(100% - 80px);
+}
+
+.chat-placeholder {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 1px dashed #ccc;
+  color: #666;
+}
