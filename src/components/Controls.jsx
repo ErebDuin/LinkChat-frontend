@@ -25,20 +25,8 @@ function Message() {
 
   return (
     <div>
-      {message && (
-        <div className="message-container" style={{ marginBottom: '5px' }}>
-          <div className="message">
-            {message}
-            {attachment && (
-              <div style={{ marginTop: 5, fontSize: 14, color: '#7bb928' }}>
-                📎 {attachment.name}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
       <div className="message-container">
-        <div className="input-row">
+        <div className="input-row" style={{ justifyContent: 'space-between' }}>
           <textarea
             value={text}
             placeholder="Message"
@@ -46,12 +34,14 @@ function Message() {
             maxLength={255}
             className="message-input"
             rows={2}
-            style={{ resize: 'vertical' }}
+            // style={{  flex: 1 }}
           />
+
           <button
             onClick={handleSend}
             disabled={!text.trim()}
             className="send-button"
+            style={{ marginLeft: '24px' }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

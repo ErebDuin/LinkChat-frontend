@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import './App.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Message from './Message';
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Message />}/>
-      </Routes>
-    </Router>
-  );
-=======
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Chat from './pages/Chat'
@@ -30,7 +16,6 @@ function App() {
     </Routes>
     
   )
->>>>>>> main
 }
 
 export default App;
