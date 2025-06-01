@@ -1,51 +1,57 @@
 import React from 'react';
+import './Message.css';
 
-import { makeStyles } from '@mui/styles';
-import { Box, Typography } from '@mui/material';
-import PropTypes from 'prop-types';
-
-const useStyles = makeStyles((theme) => ({
-  message: {
-    padding: theme.spacing(1),
-    borderRadius: theme.shape.borderRadius,
-    marginBottom: theme.spacing(1),
-  },
-  sentMessage: {
-    backgroundColor: theme.palette.primary.light,
-    color: theme.palette.primary.contrastText,
-    alignSelf: 'flex-end',
-  },
-  receivedMessage: {
-    backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.secondary.contrastText,
-    alignSelf: 'flex-start',
-  },
-  text: {
-    wordBreak: 'break-word',
-  },
-}));
-const Message = ({ message, isUser }) => {
-  const classes = useStyles();
-  return (
-    <Box
-      className={`${classes.message} ${isUser ? classes.sentMessage : classes.receivedMessage}`}
-      display="flex"
-      flexDirection="column"
-      alignItems={isUser ? 'flex-end' : 'flex-start'}
-    >
-      <Typography variant="body1" className={classes.text}>
-        {message}
-      </Typography>
-    </Box>
-  );
+function formatTime(date) {
+    const d = new Date(date);
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
-Message.propTypes = {
-  message: PropTypes.string.isRequired,
-  isUser: PropTypes.bool.isRequired,
-};
 
-Message.defaultProps = {
-  isUser: false,
-};
+function SentMessage({ message, timestamp }) {
+    return (
+        <div
+            className="message sent-message"
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end'
+            }}
+        >
+            <span className="message-text">
+                {message}
+            </span>
+            <span className="message-timestamp">
+                {formatTime(timestamp)}
+            </span>
+        </div>
+    );
+}
+
+function ReceivedMessage({ message, timestamp }) {
+    return (
+        <div
+            className="message received-message"
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start'
+            }}
+        >
+            <span className="message-text">
+                {message}
+            </span>
+            <span className="message-timestamp">
+                {formatTime(timestamp)}
+            </span>
+        </div>
+    );
+}
+
+function Message({ message, isUser, timestamp }) {
+    return isUser ? (
+        <SentMessage message={message} timestamp={timestamp} />
+    ) : (
+        <ReceivedMessage message={message} timestamp={timestamp} />
+    );
+}
 
 export default Message;
