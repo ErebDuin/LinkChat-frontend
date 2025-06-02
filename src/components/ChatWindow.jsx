@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ChatWindow.module.css';
 
-const Layout = ({ leftContent, topRightContent, bottomRightContent }) => {
+const ChatWindow = ({
+  leftContent,
+  topRightContent,
+  bottomRightContent,
+}) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -30,14 +34,10 @@ const Layout = ({ leftContent, topRightContent, bottomRightContent }) => {
         )}
       </div>
       <div className={styles.body}>
-        {/* Show leftContent only on desktop */}
         {!isMobile && (
-          <div className={styles.leftContent}>
-            {leftContent}
-          </div>
+          <div className={styles.leftContent}>{leftContent}</div>
         )}
 
-        {/* Show rightContent always */}
         <div
           className={
             isMobile
@@ -45,12 +45,17 @@ const Layout = ({ leftContent, topRightContent, bottomRightContent }) => {
               : styles.rightContent
           }
         >
-          <div className={styles.topRightContent}>{topRightContent}</div>
-          <div className={styles.bottomRightContent}>{bottomRightContent}</div>
+          <div className={styles.topRightContent}>
+            {topRightContent}
+          </div>
+
+          <div className={styles.bottomRightContent}>
+            {bottomRightContent}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Layout;
+export default ChatWindow;
