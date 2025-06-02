@@ -64,6 +64,24 @@ const Controls = ({ onSend, onSignOut }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+    <div>
+      <div className="message-container">
+        <div className="input-row" style={{ justifyContent: 'space-between' }}>
+          <textarea
+            value={text}
+            placeholder="Message"
+            onChange={(e) => setText(e.target.value)}
+            maxLength={255}
+            className="message-input"
+            rows={2}
+            // style={{  flex: 1 }}
+          />
+
+          <button
+            onClick={handleSend}
+            disabled={!text.trim()}
+            className="send-button"
+            style={{ marginLeft: '24px' }}
           >
             <line x1="22" y1="2" x2="11" y2="13" />
             <polygon points="22 2 15 22 11 13 2 9 22 2" />
