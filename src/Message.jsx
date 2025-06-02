@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import './Controls.css';
+import './Message.css';
 
 function Message() {
   const [text, setText] = useState('');
@@ -10,7 +10,7 @@ function Message() {
   const handleSend = () => {
     setMessage(text);
     setText('');
-    setAttachment(null); 
+    setAttachment(null); // clear attachment after send
   };
 
   const handleAttachClick = () => {
@@ -25,8 +25,20 @@ function Message() {
 
   return (
     <div>
+      {message && (
+        <div className="message-container" style={{ marginBottom: '20px' }}>
+          <div className="message">
+            {message}
+            {attachment && (
+              <div style={{ marginTop: 8, fontSize: 16, color: '#7bb928' }}>
+                📎 {attachment.name}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       <div className="message-container">
-        <div className="input-row" style={{ justifyContent: 'space-between' }}>
+        <div className="input-row">
           <textarea
             value={text}
             placeholder="Message"
@@ -34,14 +46,12 @@ function Message() {
             maxLength={255}
             className="message-input"
             rows={2}
-            // style={{  flex: 1 }}
+            style={{ resize: 'vertical' }}
           />
-
           <button
             onClick={handleSend}
             disabled={!text.trim()}
             className="send-button"
-            style={{ marginLeft: '24px' }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
