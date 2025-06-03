@@ -8,6 +8,8 @@ const ChatWindow = ({
 }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chatTitle, setChatTitle] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -20,10 +22,25 @@ const ChatWindow = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    fetch('https://fs-dev.portnov.com/api/chat')
+      .then(response => response.json())
+      .then(data => {
+        setChatTitle(data.title);
+        setError(null);
+      })
+      .catch(() => {
+        setError('Error loading chat title');
+        setChatTitle('Chat');
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.headerTitle}>Page Header</h2>
+        <h2 className={styles.headerTitle}>
+          {error ? 'Chat' : chatTitle}
+        </h2>
         {isMobile && (
           <button
             onClick={() => setMenuOpen(!menuOpen)}
