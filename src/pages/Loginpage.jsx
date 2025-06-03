@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import './Loginpage.css';
+import { useNavigate } from 'react-router-dom';
 
 function Loginpage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user'); // New state for role
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
-    alert(`Role: ${role}\nEmail: ${email}\nPassword: ${password}`);
+    // alert(`Role: ${role}\nEmail: ${email}\nPassword: ${password}`);
+    navigate('/chat');
   };
 
   return (
@@ -29,7 +32,6 @@ function Loginpage() {
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            required
           />
         </div>
         <div>
@@ -38,7 +40,6 @@ function Loginpage() {
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            required
           />
         </div>
         <button type="submit">Log In</button>
