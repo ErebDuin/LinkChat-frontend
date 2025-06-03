@@ -69,4 +69,3 @@ function Message({ message, isUser, timestamp }) {
     );
 }
 
-export default Message;
