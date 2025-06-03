@@ -1,26 +1,34 @@
-import React from 'react';
-import Message from './Message';
+import React, { useEffect, useRef } from 'react';
 import './MessageList.css';
 
-const MessageList = () => {
-  const messages = [
-    { id: 1, text: 'Message 1', isUser: false },
-    { id: 2, text: 'Message 2', isUser: true },
-    { id: 3, text: 'Message 3', isUser: false },
-    { id: 4, text: 'Message 4', isUser: true },
-    { id: 5, text: 'Message 5', isUser: false },
-    { id: 6, text: 'Message 6', isUser: true },
-    { id: 7, text: 'Message 7', isUser: false },
-    { id: 8, text: 'Message 8', isUser: true },
-    { id: 9, text: 'Message 9', isUser: false },
-    { id: 10, text: 'Message 10', isUser: true },
-  ];
+const MessageList = ({ messages }) => {
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
+  }, [messages]); 
 
   return (
-    <div className="message-list">
-      {messages.map((msg) => (
-        <Message key={msg.id} message={msg.text} isUser={msg.isUser} />
-      ))}
+    <div ref={listRef} className="message-list">
+      {Array.isArray(messages) &&
+        messages.map((msg, index) => (
+          <div
+            key={index}
+            style={{
+              alignSelf: msg.isUser ? 'flex-end' : 'flex-start',
+              backgroundColor: msg.isUser ? '#dcf8c6' : '#f1f0f0',
+              padding: '10px 14px',
+              borderRadius: '12px',
+              maxWidth: '70%',
+              wordBreak: 'break-word',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+            }}
+          >
+            {msg.text}
+          </div>
+        ))}
     </div>
   );
 };
