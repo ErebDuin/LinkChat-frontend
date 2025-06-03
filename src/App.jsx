@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Chat from './pages/Chat'
-import Loginpage from './components/Loginpage'
+import Loginpage from './pages/Loginpage'
 function App() {
 
   return (
