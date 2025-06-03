@@ -1,16 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Participants.module.css';
 
+
 const Participants = () => {
-  const [participants] = useState([
-    { id: 1, name: 'Admin User' },
-    { id: 2, name: 'Client' },
-  ]);
+  const [participants, setParticipants] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('https://fs-dev.portnov.com/api/chat')
+    .then(response => response.json())
+    .then(data => {
+      setParticipants(data.users);
+      setError(null);
+    })
+    .catch(() => {
+      setError('Error occured');
+      setParticipants([]);
+    });
+  }, []);
 
   return (
     <div className={styles.participantsContainer}>
       <div className={styles.participantsList}>
-        {participants.map(participant => (
+        {
+        error ? (<div>{error}</div>) :
+        participants.map(participant => (
           <div 
             key={participant.id}
             className={styles.participant}

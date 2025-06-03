@@ -12,7 +12,7 @@ function App() {
       {/*Login page */}
       <Route path="/login" element={<Loginpage />}/>
       {/* Temp root */}
-      <Route path='/' element={<Chat />}/>
+      <Route path='/' element={<Loginpage />}/>
     </Routes>
     
   )
