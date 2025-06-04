@@ -1,15 +1,23 @@
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Controls.css';
 
-const Controls = ({ onSend, onSignOut }) => {
+  const Controls = ({ onSend }) => {
+
   const [text, setText] = useState('');
   const [attachment, setAttachment] = useState(null);
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
+
+
+  const handleSignOut = () => {
+    navigate('/logout');
+  };
 
   const handleSend = () => {
     const trimmed = text.trim();
-    if (!trimmed) return;
-    onSend({ text: trimmed, isUser: true, attachment: attachment?.name || null });
+    if (!trimmed && !attachment) return;
+    onSend({ text: trimmed, isUser: true, attachment });
     setText('');
     setAttachment(null);
   };
@@ -19,8 +27,8 @@ const Controls = ({ onSend, onSignOut }) => {
   };
 
   const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setAttachment(e.target.files[0]);
+    if (e.target.files && e.target.files.length > 0) {
+    setAttachment(e.target.files[0]);
     }
   };
 
@@ -42,7 +50,7 @@ const Controls = ({ onSend, onSignOut }) => {
         />
         <button
           onClick={handleSend}
-          disabled={!text.trim()}
+          disabled={!text.trim()&& !attachment}
           className="send-button"
           style={{
             padding: '0 12px',
@@ -83,7 +91,7 @@ const Controls = ({ onSend, onSignOut }) => {
               padding: '6px 14px',
               borderRadius: '8px',
               border: '1px solid #7bb928',
-              color: '#7bb928',
+              color: '#111',
               backgroundColor: 'white',
               cursor: 'pointer',
               display: 'flex',
@@ -111,17 +119,18 @@ const Controls = ({ onSend, onSignOut }) => {
             ref={fileInputRef}
             style={{ display: 'none' }}
             onChange={handleFileChange}
+            multiple
           />
         </div>
 
         <button
           className="signout-button"
-          onClick={onSignOut}
+          onClick={handleSignOut}
           style={{
             padding: '6px 14px',
             borderRadius: '8px',
             border: '1px solid #7bb928',
-            color: '#7bb928',
+            color: '#111',
             backgroundColor: 'white',
             cursor: 'pointer',
             display: 'flex',
@@ -144,7 +153,12 @@ const Controls = ({ onSend, onSignOut }) => {
           </svg>
           Sign out
         </button>
-      </div>
+     </div>
+        {attachment && (
+          <div style={{ marginTop: 8, fontSize: 16, color: '#111' }}>
+            Selected file: {attachment.name}
+          </div>
+        )}
     </div>
   );
 };

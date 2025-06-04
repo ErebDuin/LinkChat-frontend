@@ -26,7 +26,12 @@ const MessageList = ({ messages }) => {
               boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
             }}
           >
-            {msg.text}
+           {msg.text}
+           {msg.attachment && (
+              <div style={{ color: '#111', marginTop: 4 }}>
+                📎 {msg.attachment.name}
+              </div>
+            )}
           </div>
         ))}
     </div>
