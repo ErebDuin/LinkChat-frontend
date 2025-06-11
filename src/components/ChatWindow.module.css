@@ -4,13 +4,13 @@
   width:60vw;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-sizing: border-box;
 }
 
 .header {
   height: 60px;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -36,9 +36,9 @@
 
 .leftContent {
   width: 30%;
-  border-right: 1px solid black;
+  /* border-right: 1px solid black;
   border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid black; */
   padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
@@ -52,35 +52,43 @@
   width:100%;
   position: relative;
   background: white;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  /* border-top: 1px solid black;
+  border-bottom: 1px solid black; */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
+  height: 100%;
 }
 
 .rightContentMobile {
   width: 100%;
   position: absolute;
-  top: 60px;
+  /* top: 60px; */
   height: calc(100vh - 60px);
-  border-left: 1px solid black;
+  /* border-left: 1px solid black; */
   z-index: 10;
+  background: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .topRightContent {
-  flex: 8;
+  flex: 1 1 auto;
+  min-height: 0; /* IMPORTANT for flexbox scrolling */
   overflow-y: auto;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   padding: 10px;
   box-sizing: border-box;
 }
 
 .bottomRightContent {
+  flex: 0 0 auto;
+  min-height: 60px; /* Adjust as needed for your Controls height */
   padding: 0px;
   box-sizing: border-box;
-  overflow: hidden;
-  width:auto;
+  /* overflow: hidden; */ /* REMOVE this line */
+  width: auto;
+  background: white;
 }
 
 .loader {
@@ -102,4 +110,23 @@
 @keyframes dual-ring {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+  .rightContentMobile {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    background: white;
+  }
+
+  .bottomRightContent {
+    position: fixed;
+    bottom: 50px;
+    z-index: 20;
+    background: white;
+  }
 }
