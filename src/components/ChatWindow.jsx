@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ChatWindow.module.css';
 
+const Loader = () => (
+  <div className={styles.loader} style={{ margin: '0 auto', width: 32, height: 32 }} />
+);
+
 const ChatWindow = ({
   leftContent,
   topRightContent,
@@ -10,6 +14,7 @@ const ChatWindow = ({
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatTitle, setChatTitle] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,15 +28,18 @@ const ChatWindow = ({
   }, []);
 
   useEffect(() => {
+    setLoading(true); 
     fetch('https://fs-dev.portnov.com/api/chat')
       .then(response => response.json())
       .then(data => {
         setChatTitle(data.title);
         setError(null);
+        setLoading(false); 
       })
       .catch(() => {
         setError('Error loading chat title');
         setChatTitle('Chat');
+        setLoading(false); 
       });
   }, []);
 
@@ -39,7 +47,7 @@ const ChatWindow = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.headerTitle}>
-          {error ? 'Chat' : chatTitle}
+          {loading ? <Loader /> :error ? 'Chat' : chatTitle}
         </h2>
         {isMobile && (
           <button

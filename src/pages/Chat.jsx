@@ -5,9 +5,7 @@ import Controls from '../components/Controls';
 import MessageList from '../components/MessageList';
 
 const Chat = () => {
-  const [messages, setMessages] = useState([
-    { text: 'Welcome!', isUser: false },
-  ]);
+  const [messages, setMessages] = useState([]);
 
   const handleSend = (newMessage) => {
     setMessages((prev) => [...prev, newMessage]);
