@@ -3,7 +3,7 @@ import './Loginpage.css';
 import { useNavigate } from 'react-router-dom';
 
 function Loginpage() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
@@ -15,17 +15,25 @@ function Loginpage() {
     //navigate('/chat');
     setMessage('');
 
-     if (email === 'admin@gmail.com' && password === 'test123') {
-  localStorage.setItem('token', 'mock-token');
-  localStorage.setItem('username', 'user');
-  localStorage.setItem('role', role);
+    try {
+      const res = await fetch('https://fs-dev.portnov.com/ui/admin-login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      });
 
-  setMessage('Welcome, user!');
-  setTimeout(() => navigate('/chat'), 1000);
-} else {
-  setMessage('Login failed: Invalid email or password');
-}
-
+      if (res.ok) { 
+       setTimeout(() => navigate('/chat'), 1000);
+      } else if (res.status === 401) {
+        setMessage('Login failed: Invalid username or password');
+      } else {
+        setMessage('Login failed: Server error');
+      }
+    } catch (err) {
+      setMessage('Login failed: Network error');
+    }
   };
 
   return (
@@ -33,11 +41,11 @@ function Loginpage() {
       <h2>Log In</h2>
       <form onSubmit={handleSubmit}>
       <div className="input-group">
-          <label>Email:</label>
+          <label>Username:</label>
           <input
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             required
               style={{ textAlign: 'center' }}
           />
