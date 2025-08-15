@@ -7,19 +7,58 @@ import MessageList from '../components/MessageList';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
-  const { roomId } = useParams(); // Get the room ID from URL
+  const [participants, setParticipants] = useState([]);
+  const [chatTitle, setChatTitle] = useState('');
+  const { roomId, chatId } = useParams();
 
   useEffect(() => {
-    // When roomId changes, you can load chat data for that specific room
     if (roomId) {
-      console.log(`Joining chat room: ${roomId}`);
-      // Here you can add logic to:
-      // 1. Connect to the specific chat room via websocket
-      // 2. Load existing messages for this room
-      // 3. Clear previous messages if switching rooms
-      setMessages([]); // Clear messages when joining new room
+      console.log(`Joining chat room: ${roomId}${chatId ? `, chat: ${chatId}` : ''}`);
+      
+      const fetchMessages = async () => {
+        try {
+          const response = await fetch(`http://localhost:8080/api/chat/${roomId}`);
+          if (response.ok) {
+            const chatData = await response.json();
+            console.log('Fetched chat data:', chatData);
+            
+            setChatTitle(chatData.title || '');
+            setParticipants(chatData.users || []);
+            
+            const formattedMessages = chatData.messages.map(msg => ({
+              id: msg.messageId,
+              text: msg.messageText,
+              sender: msg.sender,
+              timestamp: new Date(msg.timestamp),
+              messageType: msg.messageType,
+              imageData: msg.imageData,
+              imageFilename: msg.imageFilename,
+              imageContentType: msg.imageContentType,
+              recipient: msg.recipient
+            }));
+            
+            setMessages(formattedMessages);
+          } else {
+            console.error('Failed to fetch messages:', response.statusText);
+            setMessages([]);
+            setParticipants([]);
+            setChatTitle('');
+          }
+        } catch (error) {
+          console.error('Error fetching messages:', error);
+          setMessages([]);
+          setParticipants([]);
+          setChatTitle('');
+        }
+      };
+      
+      fetchMessages();
+    } else {
+      setMessages([]);
+      setParticipants([]);
+      setChatTitle('');
     }
-  }, [roomId]);
+  }, [roomId, chatId]);
 
   const handleSend = (newMessage) => {
     setMessages((prev) => [...prev, newMessage]);
@@ -29,12 +68,12 @@ const Chat = () => {
     <div>
       {roomId && (
         <div style={{ padding: '10px', background: '#f0f0f0', marginBottom: '10px' }}>
-          <strong>Chat Room: {roomId}</strong>
+          <strong>{chatTitle || `Chat Room: ${roomId}`}{chatId ? ` - Chat: ${chatId}` : ''}</strong>
         </div>
       )}
       <ChatWindow
         messages={messages}
-        leftContent={<Participants />}
+        leftContent={<Participants participants={participants} />}
         topRightContent={<MessageList messages={messages} />}
         bottomRightContent={<Controls onSend={handleSend} />}
       />

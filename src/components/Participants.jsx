@@ -2,36 +2,22 @@ import { useState, useEffect } from 'react';
 import styles from './Participants.module.css';
 
 
-const Participants = () => {
-  const [participants, setParticipants] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch('https://fs-dev.portnov.com/api/chat')
-    .then(response => response.json())
-    .then(data => {
-      setParticipants(data.users);
-      setError(null);
-    })
-    .catch(() => {
-      setError('Error occured');
-      setParticipants([]);
-    });
-  }, []);
-
+const Participants = ({ participants = [] }) => {
   return (
     <div className={styles.participantsContainer}>
       <div className={styles.participantsList}>
-        {
-        error ? (<div>{error}</div>) :
-        participants.map(participant => (
-          <div 
-            key={participant.id}
-            className={styles.participant}
-          >
-            {participant.name}
-          </div>
-        ))}
+        {participants.length > 0 ? (
+          participants.map((participant, index) => (
+            <div 
+              key={index}
+              className={styles.participant}
+            >
+              {participant}
+            </div>
+          ))
+        ) : (
+          <div>No participants</div>
+        )}
       </div>
     </div>
   );
