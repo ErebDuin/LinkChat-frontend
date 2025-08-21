@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import NoContentPlaceholder from './NoContentPlaceholder'; 
 import './MessageList.css';
+import MessageImage from './MessageImage';
 
-const MessageList = ({ messages }) => {
+const MessageList = ({ messages, roomId }) => {
   const listRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const MessageList = ({ messages }) => {
             }}
           >
            {msg.text}
+            <MessageImage msg={msg} roomId={roomId} />
            {msg.attachment && (
               <div style={{ color: '#111', marginTop: 4 }}>
                 📎 {msg.attachment.name}
