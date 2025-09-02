@@ -2,32 +2,34 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Controls.css';
 
-  const Controls = ({ onSend }) => {
+  const Controls = ({ onSend, currentChatId }) => {
 
   const [text, setText] = useState('');
   const [attachment, setAttachment] = useState(null);
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
-
   const handleSignOut = () => {
     navigate('/logout');
   };
 
+
   const handleSend = async () => {
     const trimmed = text.trim();
-    if (!trimmed) return;
+    if (!trimmed && !attachment) return;
+
+    const messageType = attachment ? "IMAGE" : "TEXT";
 
     const payload = {
+      chatId: currentChatId,
       sender: "alice",
       recipient: "bob",
-      chatId: 1,
-      messageType: "TEXT",
-      messageText: trimmed,
+      messageType: messageType,
+      messageText: trimmed || null,
     };
 
   try {
-    const response = await fetch("https://fs-dev.portnov.com/api/messages/text", {
+    const response = await fetch("http://localhost:8081/api/messages/text", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -36,11 +38,11 @@ import './Controls.css';
     if (!response.ok) throw new Error("Failed to send message");
 
     const savedMessage = await response.json();
-
-    // Call parent to update UI
-    onSend({ text: trimmed, isUser: true, attachment });
-
+    
     setText("");
+    setAttachment(null);
+
+    onSend({ text: "", attachment, isUser: true, messageType });
   } catch (err) {
     console.error("Error sending message:", err);
   }
