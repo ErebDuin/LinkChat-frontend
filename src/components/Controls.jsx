@@ -29,7 +29,7 @@ import './Controls.css';
     };
 
   try {
-    const response = await fetch("http://localhost:8081/api/messages/text", {
+    const response = await fetch("http://localhost:8080/api/messages/text", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

@@ -1,32 +1,56 @@
-.login-container {
-  max-width: 380px;
-  margin: 80px auto;
-  padding: 2.5rem 2rem 2rem 2rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.login-container h2 {
+body {
+  background: #FFFFFF;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main login card */
+.login-container {
+  width: 380px;
+  background: white;
+  border: 1px solid #4631A0; /* match HomePage border */
+  border-radius: 8px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem 2rem;
   text-align: center;
+}
+
+/* Heading */
+.login-container h2 {
+  font-weight: 700;
   color: #222;
   margin-bottom: 2rem;
-  font-weight: 700;
   letter-spacing: 1px;
+  border-bottom: 1px solid #4631A0;
+  padding-bottom: 10px;
 }
 
+/* Form layout */
 .login-container form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  align-items: center;
 }
+
+/* Input fields */
 .input-group input {
   width: 90%;
   max-width: 280px;
   padding: 0.65rem 0.9rem;
-  border-radius: 6px;
-  border: 1px solid #0f0707;
+  border-radius: 5px;
+  border: 1px solid #4631A0;
   font-size: 1em;
   background: #f9f9fb;
   text-align: center;
@@ -34,40 +58,44 @@
   color: #222;
 }
 
-.login-container label:not(.form-row label) {
+.input-group label {
+  display: block;
   color: #333;
   font-size: 1em;
   font-weight: 500;
   margin-bottom: 0.3rem;
+  text-align: left;
 }
 
-
-.login-container input:focus,
-.login-container select:focus {
-  border: 1.5px solid #0078ff;
+/* Input focus */
+.input-group input:focus {
+  border: 1.5px solid #aa9de1; /* match HomePage accent color */
   outline: none;
   background: #fff;
-
 }
+
+/* Buttons */
 .login-container button {
-  width: 100%;
+  width: 90%;
+  max-width: 280px;
   padding: 0.8rem;
-  background: linear-gradient(90deg, #0078ff 60%, #005fcc 100%);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
+  background: #FFFFFF;
+  color: #000;
+  border: 2px solid #6DBC00; /* consistent with HomePage send button */
+  border-radius: 5px;
   font-size: 1.1em;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,120,255,0.08);
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
 
 .login-container button:hover {
-  background: linear-gradient(90deg, #005fcc 60%, #0078ff 100%);
-  box-shadow: 0 4px 16px rgba(0,120,255,0.13);
+  background: #4631A0;
+  color: #FFFFFF;
+  border-color: #4631A0;
 }
 
+/* Login messages */
 .login-message {
   text-align: center;
   margin-top: 1rem;
@@ -81,4 +109,17 @@
 
 .login-message.error {
   color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .login-container {
+    width: 95%;
+    padding: 2rem 1rem;
+  }
+
+  .input-group input,
+  .login-container button {
+    width: 100%;
+  }
 }
