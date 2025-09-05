@@ -1,0 +1,87 @@
+/* Reuse your login styles here */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #FFFFFF;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #4631A0;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+}
+
+.center h1 {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #4631A0;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.chat-messages {
+  flex: 1;
+  border: 1px solid #4631A0;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #4631A0;
+  border-radius: 5px;
+  outline: none;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  border: 2px solid #6DBC00;
+  border-radius: 5px;
+  background: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  border-color: #4631A0;
+  transition: .3s;
+}
+
+@media (max-width: 600px) {
+  .center {
+    width: 95%;
+    min-width: unset;
+  }
+  .chat-container {
+    height: 400px;
+  }
+}
