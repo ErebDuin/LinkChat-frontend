@@ -1,7 +1,7 @@
-import { Routes, Route } from 'react-router-dom'
-import './App.css'
-import Chat from './pages/Chat'
-import Loginpage from './pages/Loginpage'
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import Chat from './pages/Chat';
+import LoginPage from './pages/LoginPage';
 import Logout from './pages/Logout';
 import HomePage from './pages/HomePage';
 function App() {
@@ -11,7 +11,7 @@ function App() {
       {/* Home page */}
       <Route path='/' element={<HomePage />}/>
       {/* Login page */}
-      <Route path='/login' element={<Loginpage />}/>
+      <Route path='/login' element={<LoginPage />}/>
       {/* Chat page */}
       <Route path="/chat" element={<Chat />}/>
       {/* Chat with room ID */}

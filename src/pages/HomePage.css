@@ -1,87 +1,82 @@
-/* Reuse your login styles here */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-
-body {
+body{
+  margin: 0;
+  padding: 0;
   background: #FFFFFF;
   height: 100vh;
   overflow: hidden;
 }
-
-.center {
+.center{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width: 600px;
   background: white;
   border-radius: 5px;
   border: 1px solid #4631A0;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
-
-.center h1 {
+.center h1{
   text-align: center;
-  padding: 20px 0;
+  padding: 20px 20px;
   border-bottom: 1px solid #4631A0;
 }
-
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-  padding: 20px;
+.button-container{
+  padding: 0 40px;
   box-sizing: border-box;
 }
-
-.chat-messages {
-  flex: 1;
-  border: 1px solid #4631A0;
+button{
+  width: 80%;
+  height: 50px;
+  background: #FFFFFF;
   border-radius: 5px;
-  padding: 10px;
-  overflow-y: auto;
-  margin-bottom: 10px;
-}
-
-.chat-input {
-  display: flex;
-  gap: 10px;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #4631A0;
-  border-radius: 5px;
+  font-size: 18px;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
   outline: none;
 }
-
-.chat-input button {
-  padding: 10px 20px;
+#login-button{
   border: 2px solid #6DBC00;
-  border-radius: 5px;
-  background: #fff;
-  font-weight: 700;
+  margin: 20px 0;
+}
+#admin-signup-button{
+  border: 2px solid #4631A0;
+  margin: 0 0 20px 0;
+}
+input[type="button"]:hover{
+  border-color: #4631A0;
+  transition: .5s;
+}
+input[type="button"]:active{
+  background: #4631A0;
+  color: #FFFFFF;
+}
+.footer-text{
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
   cursor: pointer;
 }
 
-.chat-input button:hover {
-  border-color: #4631A0;
-  transition: .3s;
-}
 
-@media (max-width: 600px) {
-  .center {
+@media (max-width: 500px) {
+  .center, .modal-content {
     width: 95%;
     min-width: unset;
+    margin: 10% auto;
+    padding: 10px;
   }
-  .chat-container {
-    height: 400px;
+  .center form, .modal form {
+    padding: 0 10px;
+  }
+  .modal-content {
+    width: 95%;
   }
 }
