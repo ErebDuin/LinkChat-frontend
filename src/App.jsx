@@ -4,8 +4,8 @@ import Chat from './pages/Chat';
 import LoginPage from './pages/LoginPage';
 import Logout from './pages/Logout';
 import HomePage from './pages/HomePage';
-function App() {
 
+ function App() {
   return (
     <Routes>
       {/* Home page */}

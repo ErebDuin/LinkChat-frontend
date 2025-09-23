@@ -1,0 +1,34 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: clamp(0.8rem, 1vw + 0.3rem, 1.5rem);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Variants */
+.primary {
+  background: #FFFFFF;
+  border: 2px solid #6DBC00;
+}
+.primary:hover {
+  background: #F0FFF2;
+  border: 2px solid #6DBC00;
+}
+.primary:active {
+  background: lightgray;
+}
+
+.secondary {
+  background: lightgray;
+  color: black;
+}
+.secondary:hover {
+  background: gray;
+  color: white;
+}

@@ -1,0 +1,19 @@
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #6DBC00;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  border: 2px solid #6dbc00;
+  box-shadow: 0 0 0 3px hsla(93, 100%, 65%, 0.284);
+  outline: none;
+}
+
+.input:disabled {
+  background: #f2f2f2;
+  cursor: not-allowed;
+}
