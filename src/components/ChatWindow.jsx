@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ChatWindow.module.css';
+import Controls from './Controls';
+import MessageDisplayArea from './MessageList';
+import Participants from './Participants';
 
 const Loader = () => (
   <div className={styles.loader} style={{ margin: '0 auto', width: 32, height: 32 }} />
@@ -29,7 +32,7 @@ const ChatWindow = ({
 
   useEffect(() => {
     setLoading(true); 
-    fetch('https://fs-dev.portnov.com/api/chat')
+    fetch('http://localhost:8080/api/chat')
       .then(response => response.json())
       .then(data => {
         setChatTitle(data.title);
@@ -44,40 +47,29 @@ const ChatWindow = ({
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.center}>
       <div className={styles.header}>
         <h2 className={styles.headerTitle}>
           {loading ? <Loader /> :error ? 'Chat' : chatTitle}
         </h2>
-        {isMobile && (
+        {/* {isMobile && (
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className={styles.menuButton}
           >
             ☰
           </button>
-        )}
+        )} */}
       </div>
       <div className={styles.body}>
-        {!isMobile && (
-          <div className={styles.leftContent}>{leftContent}</div>
-        )}
-
-        <div
-          className={
-            isMobile
-              ? `${styles.rightContent} ${styles.rightContentMobile}`
-              : styles.rightContent
-          }
-        >
-          <div className={styles.topRightContent}>
-            {topRightContent}
-          </div>
-
-          <div className={styles.bottomRightContent}>
-            {bottomRightContent}
-          </div>
+        <div className={styles.chatComponent}>
+          <Participants></Participants>
         </div>
+        <div className={styles.messagingComponent}>
+          <MessageDisplayArea></MessageDisplayArea>
+          <Controls></Controls>
+        </div>
+        
       </div>
     </div>
   );

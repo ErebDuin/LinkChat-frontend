@@ -1,132 +1,59 @@
-.container {
-  position: relative;
-  height: 90vh;
-  width:60vw;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+  height: 100vh;
+  overflow: hidden;
+}
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 1400px;
+  width: 95vw;
+  height: 95vh;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #4631A0;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
-  /* border: 1px solid black; */
-  box-sizing: border-box;
 }
-
 .header {
   height: 60px;
-  /* border-bottom: 1px solid black; */
+  border-bottom: 1px solid #4631A0;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
 }
-
-.headerTitle {
-  margin: 0;
-}
-
-.menuButton {
-  font-size: 24px;
-  padding: 4px 12px;
-}
-
 .body {
   flex: 1;
   display: flex;
-  position: relative;
-  overflow: hidden;
-}
-
-.leftContent {
-  width: 30%;
-  /* border-right: 1px solid black;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black; */
+  gap: 10px;
   padding: 10px;
-  box-sizing: border-box;
+  align-items: stretch;
   overflow: hidden;
 }
-
-.leftContentMobile {
-  border-right: none;
-}
-
-.rightContent {
-  width:100%;
-  position: relative;
-  background: white;
-  /* border-top: 1px solid black;
-  border-bottom: 1px solid black; */
+.chatComponent {
   display: flex;
-  flex-direction: column;
-  /* overflow: hidden; */
+  flex: 0 0 25%;
   height: 100%;
-}
-
-.rightContentMobile {
-  width: 100%;
-  position: absolute;
-  /* top: 60px; */
-  height: calc(100vh - 60px);
-  /* border-left: 1px solid black; */
-  z-index: 10;
-  background: white;
-  display: flex;
   flex-direction: column;
 }
-
-.topRightContent {
-  flex: 1 1 auto;
-  min-height: 0; /* IMPORTANT for flexbox scrolling */
-  overflow-y: auto;
-  /* border-bottom: 1px solid black; */
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.bottomRightContent {
-  flex: 0 0 auto;
-  min-height: 60px; /* Adjust as needed for your Controls height */
-  padding: 0px;
-  box-sizing: border-box;
-  /* overflow: hidden; */ /* REMOVE this line */
-  width: auto;
-  background: white;
-}
-
-.loader {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-}
-.loader:after {
-  content: " ";
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 1px;
-  border-radius: 50%;
-  border: 10px solid #7bb928;
-  border-color: #7bb928 transparent #7bb928 transparent;
-  animation: dual-ring 1.2s linear infinite;
-}
-@keyframes dual-ring {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@media (max-width: 600px) {
-  .rightContentMobile {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    background: white;
-  }
-
-  .bottomRightContent {
-    position: fixed;
-    bottom: 50px;
-    z-index: 20;
-    background: white;
-  }
+.messagingComponent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  gap: 10px;
 }
